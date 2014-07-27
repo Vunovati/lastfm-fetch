@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lastfmFetchApp').
-  factory('LastFmFactory', function LastFmFactory ($http) {
+  factory('LastFmResource', function ($resource) {
 
   var urlBase = 'http://ws.audioscrobbler.com/2.0/';
   var requestParams = {
@@ -12,25 +12,6 @@ angular.module('lastfmFetchApp').
     format: 'json'
   };
 
-  var artists = [];
-
-  var fetchTopArtists = function () {
-    return $http({
-      method: 'GET',
-      url: urlBase,
-      params: requestParams
-    })
-    .success(function (data) {
-      console.log(data);
-      artists = data.topartists;
-    })
-    .error(function () {
-      console.log(status);
-    });
-  };
-
-  return {
-    topArtists: artists,
-    getTopArtists: fetchTopArtists
-  };
+  return $resource('http://ws.audioscrobbler.com/2.0/?method=:op&user=:user&api_key=:key&format=json', {},
+                   {get: {method: 'GET', params: {key: requestParams.api_key}}});
 });

@@ -8,22 +8,8 @@
  * Controller of the lastfmFetchApp
  */
 angular.module('lastfmFetchApp')
-.controller('MainCtrl', function ($scope, LastFmFactory) {
-  $scope.awesomeThings = [
-    'HTML5 Boilerplate',
-    'AngularJS',
-    'Karma'
-  ];
+.controller('MainCtrl', function ($scope, LastFmResource) {
 
-  $scope.topArtists = [];
-
-  $scope.getTopArtists = function() {
-    return LastFmFactory.getTopArtists();
-  };
-
-  LastFmFactory
-  .getTopArtists()
-  .then(function () {
-    $scope.topArtists = LastFmFactory.topArtists;
-  });
+  $scope.topArtists = LastFmResource.get({op: 'user.getTopArtists', user: 'Vunovati'});
+  //$scope.artists = $scope.topArtists.topartist.artist;
 });

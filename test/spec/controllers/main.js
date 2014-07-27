@@ -9,9 +9,9 @@ describe('Controller: MainCtrl', function () {
     scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, LastFmFactory) {
+  beforeEach(inject(function ($controller, $rootScope, LastFmResource) {
     scope = $rootScope.$new();
-    scope.LastFmFactory = LastFmFactory;
+    scope.LastFmResource = LastFmResource;
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
     });
@@ -22,7 +22,6 @@ describe('Controller: MainCtrl', function () {
   });
 
   it('should attach a list of users top Artist to the scope', function () {
-    scope.getTopArtists();
     expect(scope.topArtists.length).toBe(50);
   });
 });
