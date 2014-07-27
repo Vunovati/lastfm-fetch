@@ -10,6 +10,10 @@
 angular.module('lastfmFetchApp')
 .controller('MainCtrl', function ($scope, LastFmResource) {
 
-  $scope.topArtists = LastFmResource.get({op: 'user.getTopArtists', user: 'Vunovati'});
-  //$scope.artists = $scope.topArtists.topartist.artist;
+  $scope.topArtists = [];
+
+  $scope.fetchTopArtists = function (user) {
+    $scope.topArtists = LastFmResource.get({op: 'user.getTopArtists', user: user});
+  };
+
 });

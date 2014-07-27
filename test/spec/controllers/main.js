@@ -17,11 +17,8 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });
-
   it('should attach a list of users top Artist to the scope', function () {
+    scope.fetchTopArtists('Vunovati');
     expect(scope.topArtists.length).toBe(50);
   });
 });
